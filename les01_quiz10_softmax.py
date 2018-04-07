@@ -3,9 +3,9 @@
 scores = [3.0, 1.0, 0.2]
 
 import numpy as np
-from math import exp
 
 def cal_1D_softmax(x):
+    from math import exp
     exped = [exp(v) for v in x]
     sum_ = sum(exped)
     return np.array([v / sum_ for v in exped])
@@ -15,7 +15,7 @@ def cal_2D_softmax(x):
     transposed = [cal_1D_softmax(col_t) for col_t in x_t]
     return np.array(transposed).transpose()
 
-def softmax_(x):
+def softmax_my(x):
     """Compute softmax values for each sets of scores in x."""
     dim = 1
     try:
@@ -34,7 +34,8 @@ def softmax(x):
 test = np.array([[1, 2, 3, 6],
                    [2, 4, 5, 6],
                    [3, 8, 7, 6]])
-print np.sum(test, axis = 1)
+#print np.sum(test, axis = 0) # The result is [ 6 14 15 18]
+#print np.sum(test, axis = 1) # The result is [12 17 24]. axis in np.sum means adding along which axis
 
 print(softmax(scores))
 
